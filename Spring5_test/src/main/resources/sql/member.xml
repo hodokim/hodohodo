@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+	<insert id="insert" parameterType="member">
+
+		<selectKey resultType="int" order="BEFORE" keyProperty="num">
+			select nvl(max(num),0)+1 from member_test3
+		</selectKey>
+		insert into member_test3 values(#{num}, #{name}, #{email}, #{tel}, #{addr},sysdate)
+
+	</insert>
+
+<select id="readAll"  resultType="member">
+ select * from member_test3
+ </select>
+ 
+ <insert id="register" parameterType="map">
+  insert into dept values(#{deptno},#{dname},#{loc})
+ </insert>
+
+
+
+
+</mapper>
+
+
+
